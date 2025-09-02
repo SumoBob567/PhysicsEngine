@@ -1,15 +1,20 @@
+import Engine.PhysicsObject;
+import Engine.PhysicsWorld;
+import Engine.Sphere;
+import Engine.Vector3D;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        PhysicsWorld world = new PhysicsWorld(20);
+        Sphere sphere = new Sphere(new Vector3D(), 1,1);
+        world.addObject(sphere);
+        for (int i = 0; i< 10; i++) {
+            Vector3D position = sphere.getPosition();
+            System.out.println(position.x + " " + position.y + " " + position.z);
+            sphere.applyForce(new Vector3D(0,1,0));
+            world.step(1);
         }
     }
 }
