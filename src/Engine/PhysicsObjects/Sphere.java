@@ -1,4 +1,6 @@
-package Engine;
+package Engine.PhysicsObjects;
+
+import Engine.util.Vector3D;
 
 public class Sphere extends PhysicsObject {
     private final double radius;

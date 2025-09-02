@@ -1,7 +1,6 @@
-import Engine.PhysicsObject;
 import Engine.PhysicsWorld;
-import Engine.Sphere;
-import Engine.Vector3D;
+import Engine.PhysicsObjects.Sphere;
+import Engine.util.Vector3D;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

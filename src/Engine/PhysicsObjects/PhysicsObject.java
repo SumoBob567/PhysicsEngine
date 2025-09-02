@@ -1,4 +1,6 @@
-package Engine;
+package Engine.PhysicsObjects;
+
+import Engine.util.Vector3D;
 
 public class PhysicsObject {
     protected Vector3D position;

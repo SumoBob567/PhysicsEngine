@@ -1,4 +1,4 @@
-package Engine;
+package Engine.util;
 
 public class Vector3D {
     public double x;

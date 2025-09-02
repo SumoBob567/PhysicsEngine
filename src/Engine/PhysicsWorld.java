@@ -1,5 +1,7 @@
 package Engine;
 
+import Engine.PhysicsObjects.PhysicsObject;
+
 public class PhysicsWorld {
     private PhysicsObject[] objects;
     private int objectCount = 0;
