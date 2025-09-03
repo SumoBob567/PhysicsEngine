@@ -54,4 +54,8 @@ public class PhysicsWorld {
             }
         }
     }
+
+    public PhysicsObject[] getObjects() {
+        return objects;
+    }
 }

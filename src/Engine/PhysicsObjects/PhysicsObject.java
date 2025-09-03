@@ -2,6 +2,8 @@ package Engine.PhysicsObjects;
 
 import Engine.util.Vector3D;
 
+import java.awt.*;
+
 public class PhysicsObject {
     protected Vector3D position;
     protected Vector3D velocity;
@@ -26,6 +28,13 @@ public class PhysicsObject {
         position = position.add(velocity.scale(dt));
 
         acceleration = new Vector3D(0, 0, 0);
+    }
+
+    public boolean drawCheck(int x, int y, int width, int height) {
+        return false;
+    }
+    public int getColor() {
+        return Color.BLUE.getRGB();
     }
 
     public Vector3D getPosition() {
