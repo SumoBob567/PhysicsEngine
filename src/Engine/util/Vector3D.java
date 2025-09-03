@@ -34,8 +34,11 @@ public class Vector3D {
     public double magnitude() {
         return Math.sqrt(dotProduct(this));
     }
-
     public Vector3D scale(double scalar) {
         return new Vector3D(x * scalar, y * scalar, z * scalar);
+    }
+    public Vector3D normalise() {
+        double mag = magnitude();
+        return new Vector3D(x / mag, y / mag, z / mag);
     }
 }

@@ -8,7 +8,6 @@ public class PhysicsObject {
     protected Vector3D acceleration;
     protected double mass;
 
-    public boolean isGravityObject = false;
 
     public PhysicsObject(Vector3D position, double mass) {
         this.position = position;
@@ -40,6 +39,9 @@ public class PhysicsObject {
     }
     public double getMass() {
         return mass;
+    }
+    public boolean isGravityObject() {
+        return false;
     }
     public void setPosition(Vector3D position) {
         this.position = position;
