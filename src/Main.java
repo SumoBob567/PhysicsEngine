@@ -38,6 +38,7 @@ public class Main {
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.setResizable(true);
 
         double radius = 75;
         double cameraHeight = 0;

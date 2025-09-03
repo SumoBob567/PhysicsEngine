@@ -22,8 +22,17 @@ public class Render3D extends JPanel {
     }
 
     public void updateImage() {
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        int width = getWidth();
+        int height = getHeight();
+
+        if (width <= 0 || height <= 0) return;
+
+        if (canvas == null || canvas.getWidth() != width || canvas.getHeight() != height) {
+            canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        }
+
+        camera.aspect = (double) width / height;
+
 
         PhysicsObject[] objects = world.getObjects();
         PhysicsObject[] gravityObjects = world.getGravityObjects();
