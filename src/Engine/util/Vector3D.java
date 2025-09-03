@@ -28,11 +28,14 @@ public class Vector3D {
     public Vector3D sub(Vector3D v) {
         return new Vector3D(x - v.x, y - v.y, z - v.z);
     }
-    public double dotProduct(Vector3D v) {
+    public double dot(Vector3D v) {
         return x * v.x + y * v.y + z * v.z;
     }
+    public Vector3D cross(Vector3D v) {
+        return new Vector3D((this.y * v.z) - (this.z * v.y), (this.z * v.x) - (this.x * v.z), (this.x * v.y) - (this.y * v.x));
+    }
     public double magnitude() {
-        return Math.sqrt(dotProduct(this));
+        return Math.sqrt(dot(this));
     }
     public Vector3D scale(double scalar) {
         return new Vector3D(x * scalar, y * scalar, z * scalar);
