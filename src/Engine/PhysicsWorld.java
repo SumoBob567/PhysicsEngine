@@ -1,6 +1,7 @@
 package Engine;
 
 import Engine.PhysicsObjects.PhysicsObject;
+import Engine.PhysicsObjects.Sphere;
 import Engine.util.Vector3D;
 
 public class PhysicsWorld {
@@ -23,11 +24,54 @@ public class PhysicsWorld {
     }
 
     public void step(double dt) {
+        detectAndResolveCollisions();
         applyGravity();
         for (int i = 0; i < objectCount; i++) {
             objects[i].integrate(dt);
         }
     }
+
+
+    public void detectAndResolveCollisions() {
+        PhysicsObject[] objects = getObjects();
+
+        for (int i = 0; i < objects.length; i++) {
+            if (!(objects[i] instanceof Sphere)) continue;
+            Sphere a = (Sphere) objects[i];
+
+            for (int j = i + 1; j < objects.length; j++) {
+                if (!(objects[j] instanceof Sphere)) continue;
+                Sphere b = (Sphere) objects[j];
+
+                Vector3D delta = b.getPosition().sub(a.getPosition());
+                double distance = delta.magnitude();
+                double minDistance = a.getRadius() + b.getRadius();
+
+                if (distance < minDistance && distance > 0) {
+                    double penetration = minDistance - distance;
+                    Vector3D normal = delta.normalise();
+
+                    a.setPosition(a.getPosition().sub(normal.scale(penetration * 0.5)));
+                    b.setPosition(b.getPosition().add(normal.scale(penetration * 0.5)));
+
+                    Vector3D relativeVelocity = a.getVelocity().sub(b.getVelocity());
+                    double velAlongNormal = relativeVelocity.dot(normal);
+
+
+                    if (velAlongNormal > 0) continue;
+
+                    double restitution = 1.0;
+                    double impulseMagnitude = -(1 + restitution) * velAlongNormal;
+                    impulseMagnitude /= (1 / a.getMass() + 1 / b.getMass());
+
+                    Vector3D impulse = normal.scale(impulseMagnitude);
+                    a.setVelocity(a.getVelocity().add(impulse.scale(1 / a.getMass())));
+                    b.setVelocity(b.getVelocity().sub(impulse.scale(1 / b.getMass())));
+                }
+            }
+        }
+    }
+
 
     public void applyGravity() {
         for (int i = 0; i < gravityObjectCount; i++) {

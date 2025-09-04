@@ -37,6 +37,10 @@ public class Sphere extends PhysicsObject {
         return Color.GREEN.getRGB();
     }
 
+    public boolean isMovable() {
+        return true;
+    }
+
     public double rayIntersect(Vector3D origin, Vector3D dir) {
         Vector3D oc = origin.sub(getPosition());
         double a = dir.dot(dir);

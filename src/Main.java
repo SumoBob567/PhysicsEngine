@@ -24,6 +24,11 @@ public class Main {
         world.addObject(sphere2);
         world.addObject(gravitySphere);
 
+
+        Sphere sphere3 = new Sphere(new Vector3D(0, 20, 0), 1, 1);
+        sphere3.setVelocity(new Vector3D(0.05,-1,0));
+        world.addObject(sphere3);
+
         Camera camera = new Camera(
                 new Vector3D(0, 0, 75),
                 new Vector3D(0, 0, 0),
@@ -46,7 +51,7 @@ public class Main {
         double[] angle = {0};
 
         new Timer(16, e -> {
-            world.step(0.1);
+            world.step(0.05);
 
             Vector3D pos = sphere.getPosition();
             System.out.printf("Sphere position: x=%.3f, y=%.3f, z=%.3f%n", pos.x, pos.y, pos.z);

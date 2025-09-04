@@ -16,6 +16,11 @@ public class GravitySphere extends Sphere {
     }
 
     @Override
+    public boolean isMovable() {
+        return true;
+    }
+
+    @Override
     public int getColor() {
         return Color.YELLOW.getRGB();
     }
